@@ -37,6 +37,7 @@ Simply include src/parser.js somewhere on the page.
 
 ## Running the test suite
 
-1. Install the dependencies with `bundle install`.
-2. Run the suite with `rake jasmine` from within the project root.
-3. To go `http://localhost:8888/`
+1. Clone down the repo.
+2. Install the dependencies with `bundle install` from within the project root.
+3. Run the suite with `rake jasmine`.
+4. To go `http://localhost:8888/`
