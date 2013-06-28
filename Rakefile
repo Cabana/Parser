@@ -6,14 +6,13 @@ namespace :jasmine do
     jasmine_yml = ENV['JASMINE_YML'] || 'jasmine.yml'
     Jasmine.load_configuration_from_yaml(File.join(Dir.pwd, 'spec', 'support', jasmine_yml))
 
-    puts File.join(Dir.pwd, 'spec', 'support', jasmine_yml)
-
     config = Jasmine.config
     server = Jasmine::Server.new(port, Jasmine::Application.app(config))
-    server.start
 
     puts "your tests are here:"
     puts "  http://localhost:#{port}/"
+
+    server.start
   end
 end
 
