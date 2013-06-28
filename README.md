@@ -5,20 +5,20 @@ JavaScript class for parsing strings into objects.
 ## Simple example
 
     var parser = new Parser();
-    parser.parse("foo[bar:baz], boss:niels") => { foo: { bar: 'baz' }, boss: 'niels' }
+    parser.parse("foo[bar:baz], boss:niels") // => { foo: { bar: 'baz' }, boss: 'niels' }
 
 ## Setting default values
 
 Default values can be set when instantiating the class.
 
     var parser = new Parser({ foo: 'bar' });
-    parser.parse("foo") => { foo: 'bar' }
+    parser.parse("foo") // => { foo: 'bar' }
 
 Or afterwards
 
     var parser = new Parser();
     parser.addDefaultValue('foo', 'bar');
-    parser.parse("foo") => { foo: 'bar' }
+    parser.parse("foo") // => { foo: 'bar' }
 
 ## Additional parsing features
 
