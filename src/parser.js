@@ -58,69 +58,68 @@
     };
 
     Parser.prototype._applyOptionValues = function(string) {
-      var newString, splitString,
-        _this = this;
+      var index, newString, nextWord, splitString, word, _i, _len;
 
       newString = '';
       splitString = this._splitIntoWords(string);
-      splitString.forEach(function(word, index) {
-        var nextWord;
-
+      for (index = _i = 0, _len = splitString.length; _i < _len; index = ++_i) {
+        word = splitString[index];
         nextWord = splitString[index + 1];
-        if (_this.defaults[word] && nextWord !== ':') {
-          word += ":" + _this.defaults[word];
+        if (this.defaults[word] && nextWord !== ':') {
+          word += ":" + this.defaults[word];
         }
-        return newString += word;
-      });
+        newString += word;
+      }
       return newString;
     };
 
     Parser.prototype._setUndefinedValues = function(string) {
-      var newString, splitString;
+      var index, newString, nextWord, part, prevWord, splitString, word, _i, _j, _len, _len1, _ref;
 
       splitString = this._splitIntoWords(string);
-      splitString.forEach(function(word, index) {
-        var nextWord, prevWord;
-
+      for (index = _i = 0, _len = splitString.length; _i < _len; index = ++_i) {
+        word = splitString[index];
         nextWord = splitString[index + 1];
         prevWord = splitString[index - 1];
         if (/\]+/.test(nextWord) && prevWord !== ':' || nextWord === ',' || nextWord === void 0 && !/\]+/.test(word)) {
-          return splitString[index] += ":undefined";
+          splitString[index] += ":undefined";
         }
-      });
+      }
       string = splitString.join('');
       newString = '';
-      string.split(/(\[|,|\])/).forEach(function(string) {
-        if (/.*:.*:.*/.test(string)) {
-          string = string.replace(':undefined', '');
+      _ref = string.split(/(\[|,|\])/);
+      for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+        part = _ref[_j];
+        if (/.*:.*:.*/.test(part)) {
+          part = part.replace(':undefined', '');
         }
-        return newString += string;
-      });
+        newString += part;
+      }
       return newString;
     };
 
     Parser.prototype._splitIntoWords = function(string) {
-      string.split(/(\w+)/).clean('');
-      return string.split(/(:\[?|\]+,?|,)/).clean('');
+      return split(string, /(:\[?|\]+,?|,)/).clean('');
     };
 
     Parser.prototype._wrapWordsInQuotes = function(string) {
-      var splitString;
+      var index, splitString, word, _i, _len;
 
       splitString = this._splitIntoWords(string);
-      splitString.forEach(function(word, index) {
+      for (index = _i = 0, _len = splitString.length; _i < _len; index = ++_i) {
+        word = splitString[index];
         if (!(word === ':' || /\]+/.test(word) || word === ':[' || word === ',')) {
           if (/^\d+$/.test(word)) {
-            return splitString[index] = parseInt(word);
+            splitString[index] = parseInt(word);
           } else if (word === 'true') {
-            return splitString[index] = true;
+            splitString[index] = true;
           } else if (word === 'false') {
-            return splitString[index] = false;
+            splitString[index] = false;
           } else {
-            return splitString[index] = "\"" + word + "\"";
+            splitString[index] = "\"" + word + "\"";
           }
         }
-      });
+      }
       return splitString.join('');
     };
 

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Lonely Proton</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  </head>
+  <body>
+
+    <script src="http://stevenlevithan.com/assets/misc/split.js"></script>
+    <script src="src/parser.js"></script>
+    <script>
+    var parser = new Parser();
+    var string = 'format:[email, custom:[cpr:\\d{6}-\\d{4}], required:.+], length:[min:3, max:255], allowEmpty: true';
+    var result = parser.parse(string);
+    </script>
+
+  </body>
+</html>

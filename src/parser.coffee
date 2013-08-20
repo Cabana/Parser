@@ -42,7 +42,7 @@ class @Parser
 
     splitString = @_splitIntoWords string
 
-    splitString.forEach (word, index) =>
+    for word, index in splitString
       nextWord = splitString[index + 1]
       if @defaults[word] && nextWord != ':'
         word += ":#{@defaults[word]}"
@@ -54,7 +54,7 @@ class @Parser
     splitString = @_splitIntoWords string
 
     # add undefined at the keys that have no value
-    splitString.forEach (word, index) ->
+    for word, index in splitString
       nextWord = splitString[index + 1]
       prevWord = splitString[index - 1]
       if /\]+/.test(nextWord) && prevWord != ':' || nextWord == ',' || nextWord == undefined && !/\]+/.test(word)
@@ -63,21 +63,20 @@ class @Parser
 
     # remove the undefineds that were too many
     newString = ''
-    string.split(/(\[|,|\])/).forEach (string) ->
-      if /.*:.*:.*/.test string
-        string = string.replace ':undefined', ''
-      newString += string
+    for part in string.split(/(\[|,|\])/)
+      if /.*:.*:.*/.test part
+        part = part.replace ':undefined', ''
+      newString += part
 
     newString
 
   _splitIntoWords: (string) ->
-    string.split(/(\w+)/).clean('')
-    string.split(/(:\[?|\]+,?|,)/).clean('')
+    split(string, /(:\[?|\]+,?|,)/).clean('')
 
   _wrapWordsInQuotes: (string) ->
     splitString = @_splitIntoWords string
 
-    splitString.forEach (word, index) ->
+    for word, index in splitString
       unless word == ':' || /\]+/.test(word) || word == ':[' || word == ','
         if /^\d+$/.test word
           splitString[index] = parseInt word
