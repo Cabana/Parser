@@ -1,7 +1,7 @@
 require 'closure-compiler'
 require 'coffee-script'
 
-compiler = Closure::Compiler.new(compilation_level: 'ADVANCED_OPTIMIZATIONS')
+compiler = Closure::Compiler.new(compilation_level: 'SIMPLE_OPTIMIZATIONS')
 
 files = [
   'src/lib/split.js',
