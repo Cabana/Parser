@@ -14,15 +14,14 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'src/lib/split.js',
-      'src/parser.coffee',
-      'spec/*_spec.coffee'
+      'vendor/split.js',
+      'lib/parser.coffee',
+      'spec/lib/*_spec.coffee'
     ],
 
 
     // list of files to exclude
     exclude: [
-      
     ],
 
 

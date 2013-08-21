@@ -4,8 +4,8 @@ require 'coffee-script'
 compiler = Closure::Compiler.new(compilation_level: 'SIMPLE_OPTIMIZATIONS')
 
 files = [
-  'src/lib/split.js',
-  'src/parser.coffee'
+  'vendor/split.js',
+  'lib/parser.coffee'
 ]
 
 js = files.inject '' do |result, js_component|
