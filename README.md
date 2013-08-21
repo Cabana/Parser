@@ -33,11 +33,11 @@ parser.parse("foo") // => { foo: 'bar' }
 
 ## How to use it
 
-Simply include src/parser.js somewhere on the page.
+Simply include build/parser.js somewhere on the page.
 
 ## Running the test suite
 
 1. Clone down the repo.
 2. Install the dependencies with `bundle install` from within the project root.
-3. Run the suite with `rake jasmine`.
-4. To go `http://localhost:8888/`
+3. Setup [karma](http://karma-runner.github.io/)
+4. Run `karma start`
